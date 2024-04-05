@@ -5,16 +5,20 @@ class Node {
 }
 
 class SinglyLinkedList {
-  Node head;
+  Node? head;
   SinglyLinkedList(this.head);
 
   void display() {
-    Node current = head;
-    while (current.next != null) {
+    if (head != null) {
+      Node current = head!;
+      while (current.next != null) {
+        print(current.data);
+        current = current.next!;
+      }
       print(current.data);
-      current = current.next!;
+    } else {
+      print("List is empty");
     }
-    print(current.data);
   }
 
   void insertFirst(int data) {
@@ -22,21 +26,47 @@ class SinglyLinkedList {
     head = newNode;
   }
 
+  void removeFirst() {
+    if (head != null) {
+      head = head!.next;
+    }
+  }
+
   void insertLast(int data) {
     Node newNode = Node(data, null);
-    Node current = head;
+    if (head == null) {
+      head = newNode;
+    }
+    Node current = head!;
+
     while (current.next != null) {
       current = current.next!;
     }
     current.next = newNode;
   }
+
+  void removeLast() {
+    if (head == null || head!.next == null) {
+      head = null;
+    } else {
+      Node current = head!;
+      while (current.next!.next != null) {
+        current = current.next!;
+      }
+      current.next = null;
+    }
+  }
+
+  bool isContains(int data) {
+    Node? current = head;
+    while (current != null) {
+      if (current.data == data) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
 }
 
-void main() {
-  SinglyLinkedList list = SinglyLinkedList(Node(0, null));
-  list.insertFirst(1);
-  list.insertFirst(2);
-  list.insertFirst(3);
-  list.insertLast(4);
-  list.display();
-}
+void main() {}
