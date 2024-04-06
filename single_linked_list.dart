@@ -57,6 +57,23 @@ class SinglyLinkedList {
     }
   }
 
+  void removeNode(int data) {
+    if (head == null) {
+      print("List is empty");
+    } else if (head!.data == data) {
+      head = head!.next;
+    } else {
+      Node current = head!;
+      while (current.next != null) {
+        if (current.next!.data == data) {
+          current.next = current.next!.next;
+          break;
+        }
+        current = current.next!;
+      }
+    }
+  }
+
   bool isContains(int data) {
     Node? current = head;
     while (current != null) {
