@@ -1,7 +1,7 @@
 class Node {
   int data;
   Node? next;
-  Node(this.data, this.next);
+  Node(this.data);
 }
 
 class SinglyLinkedList {
@@ -22,7 +22,8 @@ class SinglyLinkedList {
   }
 
   void insertFirst(int data) {
-    Node newNode = Node(data, head);
+    Node newNode = Node(data);
+    newNode.next = head;
     head = newNode;
   }
 
@@ -33,7 +34,7 @@ class SinglyLinkedList {
   }
 
   void insertLast(int data) {
-    Node newNode = Node(data, null);
+    Node newNode = Node(data);
     if (head == null) {
       head = newNode;
     }
